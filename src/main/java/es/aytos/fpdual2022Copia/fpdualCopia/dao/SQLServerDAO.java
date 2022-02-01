@@ -1,4 +1,4 @@
-package es.aytos.fpdual.fpdual2022;
+package es.aytos.fpdual2022Copia.fpdualCopia.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -87,12 +87,14 @@ public class SQLServerDAO implements InterfazDAO {
 		try {
 			Statement stmt = this.conexionBD.createStatement();
 			resultadoConsulta = stmt.executeQuery(sql);
+			// resultadoConsulta==null
+			// Objects.isNull(resultadoConsulta)
 			if (Objects.isNull(resultadoConsulta)) {
 				return consulta;
 			}
 
 			for (int i = 1; i <= resultadoConsulta.getMetaData().getColumnCount(); i++) {
-				columnas.add(resultadoConsulta.getMetaData().getColumnClassName(i));
+				columnas.add(resultadoConsulta.getMetaData().getColumnName(i));
 
 			}
 
