@@ -1,5 +1,7 @@
 package es.aytos.fpdual2022Copia.fpdualCopia.modelo;
 
+import es.aytos.fpdual2022Copia.fpdualCopia.utilidades.Utilidades;
+
 public class Ciudadano {
 	private String id;
 
@@ -10,6 +12,8 @@ public class Ciudadano {
 	private String facturacionAnual;
 
 	private String paisResidencia;
+
+	private String diasPermanenciaSpain;
 
 	public String getId() {
 		return id;
@@ -49,6 +53,21 @@ public class Ciudadano {
 
 	public void setPaisResidencia(String paisResidencia) {
 		this.paisResidencia = paisResidencia;
+	}
+
+	public String getDiasPermanenciaSpain() {
+		return diasPermanenciaSpain;
+	}
+
+	public void setDiasPermanenciaSpain(String diasPermanenciaSpain) {
+		this.diasPermanenciaSpain = diasPermanenciaSpain;
+	}
+
+	public String traducirASQLValues() {
+		// TODO Auto-generated method stub
+		return this.getId() + "," + Utilidades.sqlTratarTexto(this.getNombre()) + ","
+				+ Utilidades.sqlTratarTexto(this.getDireccion()) + ", " + this.getFacturacionAnual() + ","
+				+ Utilidades.sqlTratarTexto(this.getPaisResidencia()) + ", " + this.getDiasPermanenciaSpain();
 	}
 
 }

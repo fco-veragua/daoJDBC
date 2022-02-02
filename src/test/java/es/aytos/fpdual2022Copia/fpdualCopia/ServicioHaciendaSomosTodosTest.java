@@ -14,6 +14,8 @@ import es.aytos.fpdual2022Copia.fpdualCopia.factoria.FactoriaBD;
  */
 public class ServicioHaciendaSomosTodosTest {
 
+	private final int poblacionTotal = 100;
+
 	private ServicioHaciendaSomosTodos servicioHaciendaSomosTodos = null;
 
 	private InterfazDAO dao = null;
@@ -24,20 +26,39 @@ public class ServicioHaciendaSomosTodosTest {
 		this.dao = FactoriaBD.obtenerDAO();
 	}
 
-//	@Test
-//	public void testCreaEsquemaCiudadano() {
-//		this.servicioHaciendaSomosTodos.crearEsquemaCiudadanos();
-//
-//		// assertTrue(this.dao.ejecutarSentencia("INSERT INTO CIUDADANOS
-//		// (id,nombre)VALUES (1,'FCO')"));
-//		assert (this.dao.ejecutarSentencia("DELETE CIUDADANOS"));
-//	}
+	@Test
+	public void testCreaEsquemaCiudadano() {
+		this.servicioHaciendaSomosTodos.crearEsquemaCiudadanos();
+
+		// assertTrue(this.dao.ejecutarSentencia("INSERT INTO CIUDADANOS
+		// (id,nombre)VALUES (1,'FCO')"));
+		assert (this.dao.ejecutarSentencia("DELETE CIUDADANOS"));
+	}
 
 	@Test
 	public void testRellenarTablaCiudadanos() {
-		int poblacionTotal = 100;
 		this.servicioHaciendaSomosTodos.rellenarTablaCiudadanos(poblacionTotal);
 		assertThat(dao.ejecutarConsulta("SELECT * FROM CIUDADANOS").size(), is(poblacionTotal));
 	}
 
+	@Test
+	public void testbusquedaInfractores() {
+		int poblacionBD = this.servicioHaciendaSomosTodos.obtenerCiudadanos().size();
+
+		assert (poblacionBD > 0);
+	}
+
+	@Test
+	public void testRellanarTablaMorosos() {
+		this.servicioHaciendaSomosTodos.rellenarTablaMorosos();
+
+		assert (true);
+	}
+
+	// @Test
+	// public void testObtenerTablaMorosos() {
+	// int poblacionBD = this.servicioHaciendaSomosTodos.obtenerTablaMorosos();
+	//
+	// assert (poblacionBD > 0);
+	// }
 }
